@@ -1,4 +1,6 @@
-package com.example.demo.entity;
+package com.example.demo.model.entity;
+
+import com.alibaba.fastjson.JSON;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -58,6 +60,8 @@ public class Entrepreneur {
         return "Entrepreneur{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", activities=" + JSON.toJSONString(activities) +
                 '}';
+
     }
 }

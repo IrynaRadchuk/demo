@@ -1,4 +1,6 @@
-package com.example.demo.entity;
+package com.example.demo.model.entity;
+
+import com.alibaba.fastjson.JSON;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -70,7 +72,8 @@ public class Activity {
         return "Activity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", entrepreneurs=" + entrepreneurs +
+                ", entrepreneurs=" + JSON.toJSONString(entrepreneurs) +
                 '}';
     }
+
 }
