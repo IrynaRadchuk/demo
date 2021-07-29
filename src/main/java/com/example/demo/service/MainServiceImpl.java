@@ -4,7 +4,6 @@ package com.example.demo.service;
 import com.example.demo.model.entity.Activity;
 import com.example.demo.model.entity.Entrepreneur;
 import com.example.demo.repository.ActivityRepository;
-
 import com.example.demo.repository.EntrepreneurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,8 @@
 package com.example.demo.model.entity;
 
-import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -8,6 +10,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "entrepreneur")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Entrepreneur {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -16,7 +21,8 @@ public class Entrepreneur {
     @Column(name = "name")
     private String name;
     @ManyToMany(mappedBy = "entrepreneurs",fetch = FetchType.EAGER)
-    Set<Activity> activities;
+    @JsonIgnoreProperties(value="entrepreneurs")
+    private Set<Activity> activities;
 
     public Entrepreneur() {
     }
@@ -42,6 +48,14 @@ public class Entrepreneur {
         this.name = name;
     }
 
+    public Set<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(Set<Activity> activities) {
+        this.activities = activities;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,12 +70,11 @@ public class Entrepreneur {
     }
 
     @Override
+
     public String toString() {
         return "Entrepreneur{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", activities=" + JSON.toJSONString(activities) +
                 '}';
-
     }
 }
