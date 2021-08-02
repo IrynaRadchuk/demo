@@ -1,37 +1,42 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.dao.EntrepreneurDao;
 import com.example.demo.model.entity.Activity;
 import com.example.demo.model.entity.Entrepreneur;
 import com.example.demo.service.MainService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
-@Controller
+@RestController
 public class MainController {
-@Autowired
-private MainService service;
+    @Autowired
+    private MainService service;
+    @Autowired
+    private EntrepreneurDao entrepreneurDao;
 
-    @GetMapping("/")
-    public String index(Model model) {
+    @GetMapping("/activity")
+    public List<Activity> activityReturn() {
         List<Activity> activities = service.getAllActivities();
-        List<Entrepreneur> entrepreneurs = service.getAllEntrepreneurs();
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            String activitiesString = mapper.writeValueAsString(activities);
-            String entrepreneursString = mapper.writeValueAsString(entrepreneurs);
-            model.addAttribute("activities", activitiesString);
-            model.addAttribute("entrepreneurs", entrepreneursString);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        return "index";
+        return activities;
     }
 
+    @GetMapping("/entrepreneur")
+    public List<Entrepreneur> entrepreneurReturn() {
+        List<Entrepreneur> entrepreneurs = service.getAllEntrepreneurs();
+        return entrepreneurs;
+    }
+
+//    @GetMapping("/entrepreneurjdbc")
+//    public List<Entrepreneur> entrepreneurJdbc() {
+//        List<Entrepreneur> entrepreneurs = entrepreneurDao.index();
+//        return entrepreneurs;
+//    }
+    @GetMapping("/entrepreneurjdbc")
+    public Map<Entrepreneur, List<String>> getEntrepreneurs() {
+        return entrepreneurDao.getGroupedActivities();
+    }
 }
