@@ -1,24 +1,23 @@
-package com.example.demo.model.dao;
+package com.example.demo.persistence.repository;
 
-import com.example.demo.model.entity.Activity;
-import com.example.demo.model.entity.Entrepreneur;
+import com.example.demo.persistence.dao.ActivityExtractor;
+import com.example.demo.persistence.entity.Entrepreneur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-@Component
-public class EntrepreneurRepositoryJDBC {
+@Repository
+public class JDBCEntrepreneurRepository{
     @Autowired
     private ActivityExtractor activityExtractor;
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public EntrepreneurRepositoryJDBC(JdbcTemplate jdbcTemplate) {
+    public JDBCEntrepreneurRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

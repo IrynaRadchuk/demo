@@ -1,7 +1,7 @@
-package com.example.demo.model.dao;
+package com.example.demo.persistence.dao;
 
-import com.example.demo.model.entity.Activity;
-import com.example.demo.model.entity.Entrepreneur;
+import com.example.demo.persistence.entity.Activity;
+import com.example.demo.persistence.entity.Entrepreneur;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;

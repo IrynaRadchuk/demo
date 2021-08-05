@@ -1,4 +1,4 @@
-package com.example.demo.model.entity;
+package com.example.demo.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
