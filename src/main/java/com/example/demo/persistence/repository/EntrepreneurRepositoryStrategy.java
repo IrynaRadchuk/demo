@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Repository
 public class EntrepreneurRepositoryStrategy implements EntrepreneurRepository {
@@ -20,6 +19,8 @@ public class EntrepreneurRepositoryStrategy implements EntrepreneurRepository {
     private JDBCEntrepreneurRepository jdbcEntrepreneurRepository;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private String header;
 
     public EntrepreneurDTO convertToDto(Entrepreneur entrepreneur) {
         EntrepreneurDTO entrepreneurDTO = modelMapper.map(entrepreneur, EntrepreneurDTO.class);
@@ -27,7 +28,7 @@ public class EntrepreneurRepositoryStrategy implements EntrepreneurRepository {
     }
 
     @Override
-    public List<EntrepreneurDTO> getEntrepreneurs(String header) {
+    public List<EntrepreneurDTO> getEntrepreneurs() {
         List<Entrepreneur> entrepreneurs;
         if (header.equals("jpa")) {
             entrepreneurs = jpaEntrepreneurRepository.findAll();
@@ -43,7 +44,5 @@ public class EntrepreneurRepositoryStrategy implements EntrepreneurRepository {
             dtoList.add(entrepreneurDTO);
         }
         return dtoList;
-//        return entrepreneurs.stream().
-//                map(entrepreneur -> mapper.entityToDto(entrepreneur)).collect(Collectors.toList());
     }
 }

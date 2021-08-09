@@ -32,6 +32,12 @@ public class Entrepreneur {
         this.name = name;
     }
 
+    public Entrepreneur(Long id, String name, Set<Activity> activities) {
+        this.id = id;
+        this.name = name;
+        this.activities = activities;
+    }
+
     public Long getId() {
         return id;
     }
@@ -70,11 +76,11 @@ public class Entrepreneur {
     }
 
     @Override
-
     public String toString() {
         return "Entrepreneur{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", activities=" + activities +
                 '}';
     }
 }

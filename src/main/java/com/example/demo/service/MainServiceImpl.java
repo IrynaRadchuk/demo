@@ -31,8 +31,8 @@ public class MainServiceImpl implements MainService{
     }
 
     @Override
-    public List<EntrepreneurDTO> getAllEntrepreneurs(String header) {
-        return entrepreneurRepository.getEntrepreneurs(header);
+    public List<EntrepreneurDTO> getAllEntrepreneurs() {
+        return entrepreneurRepository.getEntrepreneurs();
     }
 
 //    @Override

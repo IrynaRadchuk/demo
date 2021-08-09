@@ -1,6 +1,7 @@
 package com.example.demo.api.dto;
 
 import com.example.demo.persistence.entity.Activity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Objects;
 import java.util.Set;
@@ -8,6 +9,7 @@ import java.util.Set;
 public class EntrepreneurDTO {
     private Long id;
     private String name;
+    @JsonIgnoreProperties(value="entrepreneurs")
     private Set<Activity> activities;
 
     public EntrepreneurDTO() {
@@ -16,6 +18,12 @@ public class EntrepreneurDTO {
     public EntrepreneurDTO(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public EntrepreneurDTO(Long id, String name, Set<Activity> activities) {
+        this.id = id;
+        this.name = name;
+        this.activities = activities;
     }
 
     public Long getId() {
@@ -60,6 +68,7 @@ public class EntrepreneurDTO {
         return "EntrepreneurDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", activities=" + activities +
                 '}';
     }
 }

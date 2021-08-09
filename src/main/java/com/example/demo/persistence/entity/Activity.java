@@ -36,6 +36,12 @@ public class Activity {
         this.name = name;
     }
 
+    public Activity(Long id, String name, Set<Entrepreneur> entrepreneurs) {
+        this.id = id;
+        this.name = name;
+        this.entrepreneurs = entrepreneurs;
+    }
+
     public Long getId() {
         return id;
     }
@@ -78,6 +84,7 @@ public class Activity {
         return "Activity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", entrepreneurs=" + entrepreneurs +
                 '}';
     }
 }
