@@ -57,32 +57,32 @@ class EntrepreneurRepositoryStrategyTest {
     @Test
     void getEntrepreneursJpaTest() {
         Mockito.when(jpaEntrepreneurRepository.findAll()).thenReturn(entrepreneurList);
-        List<EntrepreneurDTO> entrepreneurListActual = entrepreneurRepositoryStrategy.getEntrepreneurs("jpa");
+        List<EntrepreneurDTO> entrepreneurListActual = entrepreneurRepositoryStrategy.getEntrepreneurs();
         assertEquals(entrepreneurListExpected, entrepreneurListActual);
     }
     @Test
     void getEntrepreneursJdbcTest() {
         Mockito.when(jdbcEntrepreneurRepository.getGroupedActivities()).thenReturn(new HashSet<>(entrepreneurList));
-        List<EntrepreneurDTO> entrepreneurListActual = entrepreneurRepositoryStrategy.getEntrepreneurs("jdbc");
+        List<EntrepreneurDTO> entrepreneurListActual = entrepreneurRepositoryStrategy.getEntrepreneurs();
         assertEquals(entrepreneurListExpected, entrepreneurListActual);
     }
     @Test
     void getEntrepreneursJdbcEmptyList() {
         Mockito.when(jdbcEntrepreneurRepository.getGroupedActivities()).thenReturn(Collections.emptySet());
-        List<EntrepreneurDTO> entrepreneurListActual = entrepreneurRepositoryStrategy.getEntrepreneurs("jdbc");
+        List<EntrepreneurDTO> entrepreneurListActual = entrepreneurRepositoryStrategy.getEntrepreneurs();
         Assertions.assertTrue(entrepreneurListActual.isEmpty());
     }
 
     @Test
     void getEntrepreneursJpaEmptyList() {
         Mockito.when(jpaEntrepreneurRepository.findAll()).thenReturn(Collections.emptyList());
-        List<EntrepreneurDTO> entrepreneurListActual = entrepreneurRepositoryStrategy.getEntrepreneurs("jpa");
+        List<EntrepreneurDTO> entrepreneurListActual = entrepreneurRepositoryStrategy.getEntrepreneurs();
         Assertions.assertTrue(entrepreneurListActual.isEmpty());
     }
     @Test
     void getEntrepreneursException() {
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            entrepreneurRepositoryStrategy.getEntrepreneurs("");
+            entrepreneurRepositoryStrategy.getEntrepreneurs();
         });
     }
 }

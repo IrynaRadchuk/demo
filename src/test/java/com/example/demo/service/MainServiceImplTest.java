@@ -62,16 +62,16 @@ class MainServiceImplTest {
         entrepreneurListExpected.add(new EntrepreneurDTO(11L, "Mary", activityListMary));
         entrepreneurListExpected.add(new EntrepreneurDTO(22L, "Ann", activityListAnn));
         entrepreneurListExpected.add(new EntrepreneurDTO(33L, "Jane", activityListJane));
-        Mockito.when(entrepreneurRepository.getEntrepreneurs("")).thenReturn(entrepreneurListExpected);
+        Mockito.when(entrepreneurRepository.getEntrepreneurs()).thenReturn(entrepreneurListExpected);
 
-        List<EntrepreneurDTO> entrepreneurListActual = service.getAllEntrepreneurs("");
+        List<EntrepreneurDTO> entrepreneurListActual = service.getAllEntrepreneurs();
 
         assertEquals(entrepreneurListExpected, entrepreneurListActual);
     }
     @Test
     void getAllEntrepreneursEmptyList() {
-        Mockito.when(entrepreneurRepository.getEntrepreneurs("")).thenReturn(Collections.emptyList());
-        List<EntrepreneurDTO> entrepreneurListActual = service.getAllEntrepreneurs("");
+        Mockito.when(entrepreneurRepository.getEntrepreneurs()).thenReturn(Collections.emptyList());
+        List<EntrepreneurDTO> entrepreneurListActual = service.getAllEntrepreneurs();
         Assertions.assertTrue(entrepreneurListActual.isEmpty());
     }
     @Test

@@ -9,6 +9,6 @@ import java.util.Set;
 
 public interface MainService {
     List<Activity> getAllActivities();
-    List<EntrepreneurDTO> getAllEntrepreneurs(String header);
+    List<EntrepreneurDTO> getAllEntrepreneurs();
     //Set<Entrepreneur> getEntrepreneursJDBC();
 }

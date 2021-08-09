@@ -35,9 +35,4 @@ public class Config {
         return new ModelMapper();
     }
 
-    @Bean
-    @RequestScope
-    public String getHeader() {
-        return httpServletRequest.getHeader("db") ;
-    }
 }

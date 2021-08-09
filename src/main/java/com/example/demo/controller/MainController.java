@@ -22,7 +22,7 @@ public class MainController {
     }
 
     @GetMapping(value = "/entrepreneur")
-    public List<EntrepreneurDTO> entrepreneurReturn(@RequestHeader("db") String header) {
+    public List<EntrepreneurDTO> entrepreneurReturn() {
         List<EntrepreneurDTO> entrepreneurs = service.getAllEntrepreneurs();
         return entrepreneurs;
     }

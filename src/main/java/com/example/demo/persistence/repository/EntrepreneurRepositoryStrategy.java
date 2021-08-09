@@ -2,6 +2,7 @@ package com.example.demo.persistence.repository;
 
 import com.example.demo.api.dto.EntrepreneurDTO;
 import com.example.demo.persistence.entity.Entrepreneur;
+import com.example.demo.service.Header;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,7 +21,8 @@ public class EntrepreneurRepositoryStrategy implements EntrepreneurRepository {
     @Autowired
     private ModelMapper modelMapper;
     @Autowired
-    private String header;
+    private Header header;
+
 
     public EntrepreneurDTO convertToDto(Entrepreneur entrepreneur) {
         EntrepreneurDTO entrepreneurDTO = modelMapper.map(entrepreneur, EntrepreneurDTO.class);
@@ -30,9 +32,9 @@ public class EntrepreneurRepositoryStrategy implements EntrepreneurRepository {
     @Override
     public List<EntrepreneurDTO> getEntrepreneurs() {
         List<Entrepreneur> entrepreneurs;
-        if (header.equals("jpa")) {
+        if (header.getHeader().equals("jpa")) {
             entrepreneurs = jpaEntrepreneurRepository.findAll();
-        } else if (header.equals("jdbc")){
+        } else if (header.getHeader().equals("jdbc")){
             Set<Entrepreneur> groupedActivities = jdbcEntrepreneurRepository.getGroupedActivities();
             entrepreneurs = new ArrayList<>(groupedActivities);
         } else {
